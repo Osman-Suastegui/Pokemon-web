@@ -5,7 +5,7 @@ const router = Router()
 router.get('/obtenerCuentas', async (req, res) => {
     try {
         const pool = await getconnection();
-        const result = await pool.request().query("SELECT * FROM cuentas")  
+        const result = await pool.request().query("SELECT * FROM usuarios")  
         res.json(result.recordset)
         
     } catch (error) {
@@ -23,8 +23,8 @@ router.post('/registrarse', async (req, res) => {
             .input("nomusuario", sql.VarChar, nomUsuario)
             .input("email", sql.VarChar, email)
             .input("contrasenia", sql.VarChar, contra)
-            .query('INSERT INTO cuentas (nomusuario,email,contrasenia) VALUES(@nomusuario,@email,@contrasenia)')
-        res.json("cuenta agregada");
+            .query('INSERT INTO usuarios (nomusuario,email,contrasenia) VALUES(@nomusuario,@email,@contrasenia)')
+        res.json("usuario agregada");
     } catch (error) {
         console.log(error.message)
     }
