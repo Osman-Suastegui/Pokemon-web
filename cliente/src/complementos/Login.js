@@ -13,7 +13,7 @@ function Login(props) {
           />
           <input
             className="input-login"
-            type="password"
+            type="password" 
             placeholder="Contraseña"
           />
           <button className="boton-login" type="submit">
