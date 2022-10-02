@@ -1,6 +1,7 @@
 .App {
   background-image: url(../src/img/IndexBackground.jfif);
-  background-size: auto;
+  background-repeat: no-repeat;
+  background-size: 100%;
   text-align: center;
   padding-top: 10px;
   align-items: center;
@@ -11,12 +12,18 @@
   align-items: flex-end;
   justify-items: right;
 }
+
+.icono-volumen{
+  padding-right: 20px;
+}
+
 .boton-volumen{
-  width: 50px;
-  height: 50px;
+  width: 60px;
+  height: 60px;
   margin: 10px;
+ justify-content: center;
   border-radius: 100%;
-  background-color: #ffff00;
+  background-color: transparent;
   color: black;
   font-size: 1.5rem;
   font-style: bold;
