@@ -1,17 +1,12 @@
+
 .App {
-  background-image: url(../src/img/IndexBackground.jfif);
-  background-repeat: no-repeat;
-  background-size: 100%;
-  text-align: center;
-  padding-top: 10px;
-  align-items: center;
-  width: auto;
+  width: 100vw;
   height: 100vh;
+  margin: 0;
+  /* overflow-x: hidden; Hide horizontal scrollbar */
+
 }
-.contenedor-titulo{
-  align-items: flex-end;
-  justify-items: right;
-}
+
 
 
 .boton-volumen{

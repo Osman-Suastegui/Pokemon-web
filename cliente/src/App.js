@@ -1,20 +1,22 @@
 import './App.css';
+import Home from './complementos/Home.js';
 import Login from './complementos/Login';
-import MenuLogin from './complementos/MenuLogin.js';
-import Register from './complementos/Register';
+import Registrar from './complementos/Register';
+
+import {
+  Route, Routes
+} from "react-router-dom";
 
 function App() {
 
   return (
-      <div className="App">
-        <div className="contenedor-titulo">
-          <h1 className="titulo"> UASMONS</h1>
-        </div>
-        <div className="contenedor-menu">
-          <MenuLogin />
-          <Register/>
-        </div>
-      </div>
+    <div className="App">
+        <Routes>
+          <Route path="/" element={<Home />} />
+          <Route path="/login" element={<Login />} />
+          <Route path="/registrar" element={<Registrar />} />
+        </Routes>
+    </div>
   );
 
 }

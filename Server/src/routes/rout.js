@@ -8,7 +8,7 @@ router.get('/obtenerPokemones', async (req, res) => {
         const result = await pool.request().query("SELECT * FROM pokemones")
         
 
-        res.send({"img":result.recordset[0].img})
+        res.send(result.recordset)
         
     } catch (error) {
         res.send(error.message)
