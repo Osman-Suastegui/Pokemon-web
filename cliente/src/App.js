@@ -1,20 +1,20 @@
 import './App.css';
+import Login from './complementos/Login';
 import MenuLogin from './complementos/MenuLogin.js';
-import volumen from './img/volumen.png';
+import Register from './complementos/Register';
 
 function App() {
+
   return (
-    <div className="App">
-      <div className="contenedor-titulo">
-        <h1 className="titulo"> UASMONS</h1>
-        <button className="boton-volumen">
-          <img className="icono-volumen" src={volumen} width='60' height='60'/>
-        </button>
+      <div className="App">
+        <div className="contenedor-titulo">
+          <h1 className="titulo"> UASMONS</h1>
+        </div>
+        <div className="contenedor-menu">
+          <MenuLogin />
+          <Register/>
+        </div>
       </div>
-      <div className='contenedor-Botones'>
-        <MenuLogin/>
-      </div>
-    </div>
   );
 
 }
