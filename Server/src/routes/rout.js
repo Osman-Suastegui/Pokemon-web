@@ -71,6 +71,20 @@ router.post("/login", async (req, res) => {
         res.status(500).send(error.message)
     }
 })
+router.post("/obtenerPerfil",async (req,res) =>{
+    try {
+        const {nomUsuario } = req.body
+        const pool = await getconnection();
+        const result = await pool.request()
+        .input("nomusuario",sql.VarChar,nomUsuario)
+        .query("SELECT * FROM usuarios WHERE nomusuario = @nomusuario")
+        res.send(result.recordset[0])
+        
+    } catch (error) {
+        res.send(error.message)
+    }
+})
+
 router.post('/registrarse', async (req, res) => {
 
     try {

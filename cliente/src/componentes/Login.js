@@ -32,7 +32,7 @@ function Login() {
     }).then(res => res.json())
       .then(user => {
         if(user.loggedIn){
-          localStorage.setItem("loggedIn",true)
+          localStorage.setItem("loggedIn","true")
           localStorage.setItem("nombreUsuario",user.usuario)
           navigate("/menu-usuario")
         }else{
@@ -41,8 +41,7 @@ function Login() {
 
       });
 
-    // console.log(Login);
-  };
+    };
 
   return (
     <div className="contenedor-login">

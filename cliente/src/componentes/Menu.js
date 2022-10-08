@@ -1,24 +1,32 @@
 import react from 'react';
-import  "../css/Menu.css"
-import {useNavigate} from 'react-router-dom'
+import "../css/Menu.css"
+import { useNavigate, Link } from 'react-router-dom'
+
 function Menu() {
+    console.log("balasf")
     const navigate = useNavigate()
-    const cerrarSesion = (e) =>{
+    const cerrarSesion = (e) => {
         e.preventDefault()
-        localStorage.setItem("loggedIn",false)
+        localStorage.removeItem("loggedIn")
         localStorage.removeItem("nombreUsuario")
         navigate("/")
     }
     return (
         <div className="Contenedor-Menu">
+            <div className="Bienvenida">
+                <p>MENU</p>
+                <br></br>
+                <p> Bienvenido {localStorage.getItem("nombreUsuario")}</p>
+            </div>
             <div className="Logo-repetido">
                 <div className="Contenedor-Botones">
-                    <button className="Boton-Menu">Combatir</button>
-                    <button className="Boton-Menu">Ver Ranking</button>
+                    <Link to="/saladecola" className="Boton-Menu">Entrar en cola</Link>
+                    <button className="Boton-Menu">Combatir contra bot</button>
+                    <Link to="/ranking" className="Boton-Menu">Ver Ranking</Link>
                     <button className="Boton-Menu">Crear Equipo</button>
-                    <button className="Boton-Menu">Ver Perfil</button>
+                    <Link to="/perfil" className="Boton-Menu">Ver Perfil</Link>
                     <button onClick={cerrarSesion} className="Boton-Menu">Cerrar Sesion</button>
-                    <button className="Boton-Menu">UasDex</button>
+                    <Link to="/uasdex" className="Boton-Menu">UasDex</Link>
                 </div>
             </div>
         </div>
