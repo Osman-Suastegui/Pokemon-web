@@ -36,6 +36,10 @@ io.on('connection', (socket) => {
     socket.on("btnPress",(sala) =>{
         io.to(sala).emit("cambiarBtnColor")
     })
+
+    socket.on("mensaje",(mensaje)  =>{
+        io.to(mensaje.sala).emit("mimensaje",{"usuario":mensaje.usuario,"mensaje":mensaje.mensaje})
+    })
         
 })
 

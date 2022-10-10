@@ -1,0 +1,38 @@
+.Contenedor-principal
+{
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    background-image: url(../img/IndexBackground.jfif);
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+
+.repetir-logo
+{
+    width: 100%;
+    height: 100%;
+    background-image: url(../img/Logo.png);
+    background-repeat: repeat;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.contenedor-Tabla{
+    width: 50%;
+    height: 80%;
+    display: flex;
+    flex-direction: column;
+    background-color: rgba(0, 0, 0, 0.5);
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+.Tabla-Ranking
+{
+    
+    
+}
