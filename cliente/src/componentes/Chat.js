@@ -1,4 +1,5 @@
 import { useState} from "react";
+import "../css/chat.css";
 
 function Chat({sala,socket}) {
 
@@ -10,9 +11,11 @@ function Chat({sala,socket}) {
     }
     const enviarMensaje = (e) =>{
         e.preventDefault()
-        console.log(mensaje)
+         
+        
         const miMensaje = {"usuario":localStorage.getItem("nombreUsuario") ,"mensaje":mensaje,"sala":sala}
         socket.emit("mensaje",miMensaje)
+        setMensaje("")
     }
     socket.on("mimensaje",(msg)=>{
         let contMensaje = { 
@@ -22,21 +25,20 @@ function Chat({sala,socket}) {
         setContenidoChat([...contenidoChat,contMensaje])
     })
     return (
-        <div>
-            afgasgasgasgasgasg
-            <div className="mi-chat">{
-                contenidoChat.map(msg =>(
-                    <div key={msg.key}> {msg.usuario + ": "+ msg.mensaje} </div>
-                ))
-            }</div>
-            <form action="" onSubmit={enviarMensaje}>
-
-            <input type="text" onChange={handleMensaje} />
-            <button  type="submit">
-              Enviar mensaje
-            </button>
-            </form>
-        </div>
+            <div className="Contenedor-chat">
+                <div className="mi-chat">{
+                    contenidoChat.map(msg =>(
+                        <div key={msg.key}> {msg.usuario + ": "+ msg.mensaje} </div>
+                    ))
+                }
+                </div>
+                <form className='formulario-chat' action="" onSubmit={enviarMensaje}>
+                    <input value={mensaje} type="text" onChange={handleMensaje} />
+                    <button className="boton-char" type="submit">
+                    Enviar mensaje
+                    </button>
+                </form>
+            </div>
     );
 }
 

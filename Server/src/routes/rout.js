@@ -101,4 +101,14 @@ router.post('/registrarse', async (req, res) => {
     }
 
 })
+
+router.get("/obtenerRanking",async (req,res) =>{
+    try {
+        const pool = await getconnection();
+        const result = await pool.request().query("SELECT nomusuario,puntaje FROM usuarios ORDER BY puntaje DESC")
+        res.send(result.recordset)
+    } catch (error) {
+         res.send(error.message)
+    }
+})
 export default router

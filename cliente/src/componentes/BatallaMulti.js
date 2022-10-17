@@ -1,5 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import Chat from './Chat.js'
+import "../css/BatallaMulti.css"
+
 function BatallaMulti({sala,socket}) {
     const [color, setColor] = useState("yellow")
     socket.on("cambiarBtnColor",()=>{
@@ -14,7 +16,7 @@ function BatallaMulti({sala,socket}) {
         socket.emit("btnPress",sala)
     }
     return (
-        <div>
+        <div className="Contenedor-Batalla">
             <button style={{background : color}} onClick={cambiarColor}>cambiar color (switch)</button>
             <Chat sala={sala} socket={socket}/>
         </div>

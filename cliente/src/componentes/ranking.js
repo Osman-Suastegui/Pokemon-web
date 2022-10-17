@@ -1,5 +1,6 @@
 import '../css/ranking.css';
 
+import {useEffect,useState} from 'react'
 
 function getRank() {
     var rank = document.getElementsByClassName("rank")[0].innerHTML;
@@ -7,6 +8,14 @@ function getRank() {
 }
 
 function Ranking() {
+    const [ranking,setRanking] = useState([])
+    useEffect(()=>{
+        console.log("&sfas")
+        fetch("http://localhost:3000/obtenerRanking")
+        .then(data => data.json())
+        .then(ranking => setRanking(ranking))
+    },[])
+
     return (
         <div className='Contenedor-principal'>
             <div className='repetir-logo'>
