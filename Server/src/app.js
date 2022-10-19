@@ -20,12 +20,15 @@ app.use(express.json());
 app.use(router)
 
 let users = 0;
+let cola = []
+let cantidadPartidas = 0
 io.on('connection', (socket) => { 
 
     socket.on("usuarioencola",()=>{
         users++;
         const salaDeBatalla = Math.round(users / 2 ) 
         socket.join(salaDeBatalla)
+     
         socket.emit("asignarSaladeBatalla",salaDeBatalla)
         const jugadores = io.sockets.adapter.rooms.get(salaDeBatalla).size
         socket.on("comenzarPelea", SALA =>{

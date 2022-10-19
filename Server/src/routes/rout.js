@@ -54,16 +54,18 @@ router.post("/login", async (req, res) => {
             loggedIn: false,
             usuario: nomusuario,
             mensaje: "usuario o contrasenia invalidas"
-
         }
         const pool = await getconnection();
-        const usuarios = await pool.request().query("SELECT * FROM usuarios")
-        usuarios.recordset.map(usuario => {
-            if (usuario.contrasenia == contra && usuario.nomusuario == nomusuario) {
-                logged.mensaje = "usuario o contrasenia validas"
-                logged.loggedIn = true
-            }
-        })
+        const usuarios = await pool.request()
+        .input('nomusuario',sql.VarChar,nomusuario)
+        .input('contrasenia',sql.VarChar,contra)
+        .query("SELECT nomusuario FROM usuarios WHERE nomusuario = @nomusuario AND contrasenia = @contrasenia")
+            
+        if (usuarios.recordset.length != 0) {
+            logged.mensaje = "usuario o contrasenia validas"
+            logged.loggedIn = true
+        }
+        
         return res.status(200).send(logged)
 
 
