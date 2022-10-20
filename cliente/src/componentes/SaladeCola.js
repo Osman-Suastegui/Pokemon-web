@@ -3,21 +3,23 @@ import io from 'socket.io-client';
 
 import BatallaMulti from './BatallaMulti.js';
 const socket = io("http://localhost:3000");
+
 function SaladeCola() {
     const [sala,setSalaDeBatalla] = useState()
     const [batallaLista,setBatallaLista] = useState(false)
+
     useEffect(()=>{
         socket.emit("usuarioencola")
-        socket.on("asignarSaladeBatalla",salaDeBatalla =>{
-            setSalaDeBatalla(salaDeBatalla)
-        })
-    },[])        
-    socket.emit("comenzarPelea",sala)    
-    socket.on("verificarPelea",jugadores =>{
-        if(jugadores == 2){
-            setBatallaLista(true)
-        }
+    },[])   
+    
+    socket.on("asignarSaladeBatalla",salaDeBatalla =>{
+        setSalaDeBatalla(salaDeBatalla)
+        setBatallaLista(true)
     })
+    
+    if(window.location.pathname == '/saladecola'){
+        window.onpopstate = () => socket.emit("salirDeSala",{"sala":sala,"nombreUsuario":localStorage.getItem("nombreUsuario")})
+    }    
  
     return (
         <div >

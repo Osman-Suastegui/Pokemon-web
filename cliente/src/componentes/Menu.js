@@ -11,6 +11,7 @@ function Menu() {
         localStorage.removeItem("nombreUsuario")
         navigate("/")
     }
+    
     return (
         <div className="Contenedor-Menu">
             <div className="Bienvenida">

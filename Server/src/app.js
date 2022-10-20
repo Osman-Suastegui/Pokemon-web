@@ -19,32 +19,42 @@ app.use(express.urlencoded({ extended: false }));
 app.use(express.json());
 app.use(router)
 
-let users = 0;
 let cola = []
-let cantidadPartidas = 0
+let salaDeBatalla = 0
 io.on('connection', (socket) => { 
-
+    
     socket.on("usuarioencola",()=>{
-        users++;
-        const salaDeBatalla = Math.round(users / 2 ) 
+        cola.push(socket)
+        if(cola.length != 2) return
+        
+        salaDeBatalla++;
         socket.join(salaDeBatalla)
-     
-        socket.emit("asignarSaladeBatalla",salaDeBatalla)
-        const jugadores = io.sockets.adapter.rooms.get(salaDeBatalla).size
-        socket.on("comenzarPelea", SALA =>{
-            io.to(SALA).emit("verificarPelea",jugadores)
-        })
+        const JUGADOR1 = cola.shift()
+        const JUGADOR2 = cola.shift()     
+        JUGADOR1.join(salaDeBatalla)
+        JUGADOR2.join(salaDeBatalla)
+        io.to(salaDeBatalla).emit("asignarSaladeBatalla", salaDeBatalla);
+    
     })  
-
+    socket.on("salirDeSala",(msg)=>{
+        io.to(msg.sala).emit("usuarioHaSalidoDePartida",msg.nombreUsuario)
+        cola = []
+    })
+    
     socket.on("btnPress",(sala) =>{
         io.to(sala).emit("cambiarBtnColor")
     })
 
     socket.on("mensaje",(mensaje)  =>{
+        console.log("msg servidor ",mensaje)
         io.to(mensaje.sala).emit("mimensaje",{"usuario":mensaje.usuario,"mensaje":mensaje.mensaje})
     })
+
+    
         
 })
+
+
 
 
 server.listen(3000);
