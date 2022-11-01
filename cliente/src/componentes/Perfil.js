@@ -24,8 +24,8 @@ function Perfil() {
         <div>
             <h2>Esta es tu perfil y tu nombre es {perfilUsuario.nomusuario}</h2>
             <h2>Esta es tu perfil y tu email es {perfilUsuario.email}</h2>            
-            <h2>Esta es tu perfil y tu contra es {perfilUsuario.contrasenia}</h2>
-            
+            <h2>Esta es tu perfil y tu puntaje es {perfilUsuario.puntaje}</h2>            
+
         </div>
     );
 }

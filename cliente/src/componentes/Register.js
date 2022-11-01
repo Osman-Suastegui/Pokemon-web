@@ -32,22 +32,6 @@ function Register() {
             return;
         }
         
-        fetch('http://localhost:3000/existeUsuario', {
-            method: 'POST',
-            headers: {
-              'Accept': 'application/json, text/plain, */*',
-              'Content-Type': 'application/json'
-            },
-            body: JSON.stringify({"nomusuario":usuario})
-          }).then(res => res.json())
-            .then(usuario => {
-                if(usuario.existe){
-                    alert("Este usuario ya registrado")
-                    return;
-                }
-            });
-
-
         const Registro = {
             nomUsuario: usuario,
             email: correo,
@@ -62,9 +46,10 @@ function Register() {
             },
             body: JSON.stringify(Registro)
           }).then(res => res.json())
-            .then(res => console.log(res));
+            .then(res => {
+                alert(res.mensaje)
+            }); 
 
-        console.log(Registro); 
     };
 
     return (

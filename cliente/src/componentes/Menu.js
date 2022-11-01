@@ -24,7 +24,7 @@ function Menu() {
                     <Link to="/saladecola" className="Boton-Menu">Entrar en cola</Link>
                     <button className="Boton-Menu">Combatir contra bot</button>
                     <Link to="/ranking" className="Boton-Menu">Ver Ranking</Link>
-                    <button className="Boton-Menu">Crear Equipo</button>
+                    <Link to="/crear-equipo" className="Boton-Menu">Crear Equipo</Link>
                     <Link to="/perfil" className="Boton-Menu">Ver Perfil</Link>
                     <button onClick={cerrarSesion} className="Boton-Menu">Cerrar Sesion</button>
                     <Link to="/uasdex" className="Boton-Menu">UasDex</Link>

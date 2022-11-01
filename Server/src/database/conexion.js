@@ -11,12 +11,10 @@ const dbsettings  = {
 
 export const getconnection = async () =>{
   try {
-    const pool = await sql.connect(dbsettings);
-    // pool.request().query()
-  
+    const pool = await sql.connect(dbsettings);  
     return pool;
   } catch (error) {
-    console.log(error);
+    console.log(error.message);
   }
 }
 getconnection();

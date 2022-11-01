@@ -4,9 +4,10 @@ import Login from './componentes/Login';
 import MenuUsuario from './componentes/Menu.js';
 import Registrar from './componentes/Register';
 import UaxDex from './componentes/UasDex.js';
-import Ranking from './componentes/Ranking.js';
+import Ranking from './componentes/ranking.js';
 import Perfil from './componentes/Perfil.js';
 import SaladeCola from './componentes/SaladeCola.js';
+import CrearEquipo from './componentes/CrearEquipo.js';
 import {useEffect } from 'react'
 import {
   Route, Routes,useNavigate
@@ -36,7 +37,7 @@ function App() {
             <Route path="/ranking" element={<Ranking/>} />
             <Route path="/perfil" element={<Perfil/>} />
             <Route path="/saladecola" element={<SaladeCola />} />
-
+            <Route path="/crear-equipo" element={<CrearEquipo />} />
 
         </Routes>
     </div>
