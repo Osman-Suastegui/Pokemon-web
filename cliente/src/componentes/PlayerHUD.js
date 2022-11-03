@@ -1,0 +1,23 @@
+import react from 'react';
+import "../css/PlayerHUD.css";
+
+function InfoPoke( {miPoke} ) {
+    console.log("poke wa " ,miPoke)
+    return (
+        <div>
+            <div className='InfoJugador'>
+                <h1>{miPoke?.nombre}</h1>
+                <h3>{miPoke?.vida}</h3> 
+                <div className='BarraVida'>
+                    <div className='Vida' style={{width: miPoke?.vida + '%'}}></div>
+                </div>
+            </div>
+            <div className='img'>
+                <img src={miPoke?.img_frente} />
+            </div>
+
+        </div>
+    )
+}
+
+export default InfoPoke;

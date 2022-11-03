@@ -1,34 +1,25 @@
 import PokemonPres from './PokemonPres'
 import { useState, useEffect } from 'react'
-
+import { obtenerEquipo } from '../api/pokemon.api.js'
 
 function CrearEquipo() {
     const [pokemones, setPokemones] = useState([])
     const [pokemonActualID, setPokemonActualID] = useState(1)
     const [miEquipo, setMiEquipo] = useState([])
 
-
-    const obtenerEquipo = () => {
-        fetch("http://localhost:3000/obtenerEquipo", {
-            method: "POST",
-            headers: {
-                'Accept': 'application/json, text/plain, */*',
-                'Content-Type': 'application/json'
-            },
-            body: JSON.stringify({ "usuario": localStorage.getItem("nombreUsuario") })
-        })
-            .then(data => data.json())
-            .then(misPokemones => {
-                setMiEquipo(misPokemones)
-            })
+    const cargarEquipo = async () => {
+        const response = await obtenerEquipo(localStorage.getItem("nombreUsuario"))
+        const miEquipoTmp = await response.json()
+        setMiEquipo(miEquipoTmp)
     }
     useEffect(() => {
+
         fetch("http://localhost:3000/obtenerPokemones")
             .then(data => data.json())
             .then(pokemones => {
                 setPokemones(pokemones)
             })
-        obtenerEquipo()
+        cargarEquipo()
     }, [])
 
 
@@ -43,7 +34,7 @@ function CrearEquipo() {
         const mensaje = {
             "usuario": usuario,
             "id": pokemonActualID
-    }
+        }
 
         await fetch("http://localhost:3000/guardarPokemonEquipo", {
             method: "POST",
@@ -53,20 +44,21 @@ function CrearEquipo() {
             },
             body: JSON.stringify(mensaje)
         })
-        .then(data => data.json())
-        .then(res => {
-            console.log(res.mensaje)
-        })
-        obtenerEquipo()
+            .then(data => data.json())
+            .then(res => {
+                console.log(res.mensaje)
+            })
+        cargarEquipo()
+
     }
 
     const eliminarPokemon = async (pokemonID) => {
         const mensaje = {
-            "usuario":localStorage.getItem("nombreUsuario"),
-            "pokemonID" : pokemonID
+            "usuario": localStorage.getItem("nombreUsuario"),
+            "pokemonID": pokemonID
         }
-        await fetch("http://localhost:3000/eliminarPokemon",{
-            method:"POST",
+        await fetch("http://localhost:3000/eliminarPokemon", {
+            method: "POST",
             headers: {
                 'Accept': 'application/json, text/plain, */*',
                 'Content-Type': 'application/json'
@@ -74,7 +66,7 @@ function CrearEquipo() {
             body: JSON.stringify(mensaje)
         }).then(data => data.json()).then(res => console.log(res.mensaje))
 
-        obtenerEquipo()
+        cargarEquipo()
 
     }
 

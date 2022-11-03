@@ -8,7 +8,10 @@ const router = Router()
 router.get('/obtenerPokemones', async (req, res) => {
     try {
         const pool = await getconnection();
-        const result = await pool.request().query("SELECT P.pokemonID,t.tipo,p.nombre,p.img from pokemones as p INNER JOIN tiposPokemon as t ON p.tipoID = t.tipoID")
+        const result = await pool.request().query(`
+            SELECT P.pokemonID,t.fuerza,t.defensa,t.velocidad,t.vida,t.tipo,p.nombre,p.img_frente from pokemones as p 
+            INNER JOIN tiposPokemon as t ON p.tipoID = t.tipoID
+        `)
 
 
         res.json(result.recordset)
@@ -21,7 +24,7 @@ router.get('/obtenerPokemones', async (req, res) => {
 router.get('/obtenerUsuarios', async (req, res) => {
     try {
         const pool = await getconnection();
-        const result = await pool.request().query("SELECT * FROM usuarios")
+        const result = await pool.request().query("SELECT nomusuario,email,puntaje FROM usuarios")
         res.send(result.recordset)
 
     } catch (error) {
@@ -92,16 +95,16 @@ router.post("/obtenerPerfil", async (req, res) => {
     }
 })
 
-router.post("/eliminarPokemon" ,async(req,res) =>{
+router.post("/eliminarPokemon", async (req, res) => {
     try {
-        const {usuario, pokemonID} = req.body
+        const { usuario, pokemonID } = req.body
         const pool = await getconnection()
         await pool.request()
-            .input("usuario",sql.VarChar,usuario)
-            .input("pokemonID",sql.Int,pokemonID)
+            .input("usuario", sql.VarChar, usuario)
+            .input("pokemonID", sql.Int, pokemonID)
             .query("DELETE FROM usuario_pokemon WHERE usuario = @usuario AND pokemonID = @pokemonID")
-            
-        res.json({"mensaje":"pokemon eliminado"})
+
+        res.json({ "mensaje": "pokemon eliminado" })
     } catch (error) {
         console.log(error.message)
     }
@@ -109,12 +112,18 @@ router.post("/eliminarPokemon" ,async(req,res) =>{
 router.post("/obtenerEquipo", async (req, res) => {
     try {
         const { usuario } = req.body
-        console.log("ACa ",usuario)
+        console.log("usuari ", usuario)
         const pool = await getconnection();
         const pokemones = await pool.request()
             .input("usuario", sql.VarChar, usuario)
-            .query("SELECT P.pokemonID, nombre,img FROM pokemones AS P INNER JOIN usuario_pokemon AS U ON P.pokemonID = U.pokemonID WHERE usuario = @usuario")
-            res.json(pokemones.recordset)
+            .query(`
+                SELECT P.pokemonID,T.tipo,T.velocidad,T.fuerza,T.defensa,T.vida, nombre,img_frente,img_espaldas
+                FROM pokemones AS P INNER JOIN usuario_pokemon AS U 
+                ON P.pokemonID = U.pokemonID 
+                INNER JOIN tiposPokemon as T ON P.tipoID = T.tipoID
+                WHERE usuario = @usuario
+            `)
+        res.json(pokemones.recordset)
     } catch (error) {
         console.log(error.message)
 

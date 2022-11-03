@@ -25,7 +25,7 @@ function UasDex() {
                 <div className='Contenedor-Principal'>
                     <div className='Busqueda'>
                         <input onChange={buscarPokemon} type='text' placeholder='Buscar Pokemon' className='input'/>
-                        <button className='btn'>Buscar</button>
+                     
                     </div>
                     {
                         pokemones.map(pokemon =>(

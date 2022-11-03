@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import io from 'socket.io-client';
-import '../css/SaladeCola.css';
+import '../css/SaladeCola.css'
 
 
 import BatallaMulti from './BatallaMulti.js';

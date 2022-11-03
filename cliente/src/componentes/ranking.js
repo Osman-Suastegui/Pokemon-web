@@ -1,21 +1,17 @@
 import '../css/ranking.css';
-
+import { obtenerRanking } from '../api/pokemon.api.js'
 import { useEffect, useState } from 'react'
-
-function getRank() {
-    var rank = document.getElementsByClassName("rank")[0].innerHTML;
-    return rank;
-}
 
 function Ranking() {
     const [ranking, setRanking] = useState([])
     useEffect(() => {
-        console.log("&sfas")
-        fetch("http://localhost:3000/obtenerRanking")
-            .then(data => data.json())
-            .then(ranking => setRanking(ranking))
+        const obtRanking = async () => {
+            const response = await obtenerRanking()
+            const ranking = await response.json()
+            setRanking(ranking)    
+        }
+        obtRanking()
     }, [])
-
 
     return (
         <div className='Contenedor-principal'>
@@ -27,13 +23,13 @@ function Ranking() {
                     <div className='Tabla-Ranking'>
                         <table>
                             {
-                                ranking.map((usuario,index) => (
+                                ranking.map((usuario, index) => (
                                     <tr>
-                                        <th>{index +  1} </th>
+                                        <th>{index + 1} </th>
                                         <th>{usuario.nomusuario} </th>
                                         <th>{usuario.puntaje} </th>
 
-                                    </tr>                                   
+                                    </tr>
                                 ))
                             }
                         </table>

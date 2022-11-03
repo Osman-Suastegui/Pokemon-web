@@ -3,12 +3,12 @@ import "../css/Menu.css"
 import { useNavigate, Link } from 'react-router-dom'
 
 function Menu() {
-    console.log("balasf")
     const navigate = useNavigate()
     const cerrarSesion = (e) => {
         e.preventDefault()
         localStorage.removeItem("loggedIn")
         localStorage.removeItem("nombreUsuario")
+        localStorage.removeItem("entrenador")
         navigate("/")
     }
     
@@ -22,7 +22,7 @@ function Menu() {
             <div className="Logo-repetido">
                 <div className="Contenedor-Botones">
                     <Link to="/saladecola" className="Boton-Menu">Entrar en cola</Link>
-                    <button className="Boton-Menu">Combatir contra bot</button>
+                    <Link to="/CombatirContraBot" className="Boton-Menu">Combatir contra bot</Link>
                     <Link to="/ranking" className="Boton-Menu">Ver Ranking</Link>
                     <Link to="/crear-equipo" className="Boton-Menu">Crear Equipo</Link>
                     <Link to="/perfil" className="Boton-Menu">Ver Perfil</Link>

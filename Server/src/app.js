@@ -1,9 +1,9 @@
 import express from 'express';
 import router from './routes/rout.js'
 import cors from "cors";
-const app = express()
-
 import http from 'http';
+
+const app = express()
 const server = http.createServer(app);
 import { Server } from "socket.io"
 const io = new Server(server, {

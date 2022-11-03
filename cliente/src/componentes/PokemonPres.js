@@ -4,7 +4,7 @@ function PokemonPres({ pokemon }) {
 
     return (
         <div className='card-pokemonPres'>
-            <img src={pokemon.img} alt="" />
+            <img src={pokemon.img_frente} alt="" />
             <div className='caracteristicas-pokemonPres'>
                 <h2>NOMBRE: {pokemon.nombre}</h2>
                 <h2>TIPO: {pokemon.tipo}</h2>
