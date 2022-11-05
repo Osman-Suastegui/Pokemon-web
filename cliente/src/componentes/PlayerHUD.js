@@ -1,13 +1,11 @@
-import react from 'react';
 import "../css/PlayerHUD.css";
 
-function InfoPoke( {miPoke} ) {
-    console.log("poke wa " ,miPoke)
+function InfoPoke( {miPoke,danio} ) {
     return (
         <div>
             <div className='InfoJugador'>
                 <h1>{miPoke?.nombre}</h1>
-                <h3>{miPoke?.vida}</h3> 
+                <h3>{miPoke?.vida }</h3> 
                 <div className='BarraVida'>
                     <div className='Vida' style={{width: miPoke?.vida + '%'}}></div>
                 </div>

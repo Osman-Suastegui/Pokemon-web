@@ -29,7 +29,7 @@ function Login() {
       ))
     })
 
-    let entrenadorUsuario = new Entrenador(nombre, equipoEntrenador, 100,"correo@hotmail.com");
+    let entrenadorUsuario = new Entrenador(nombre, equipoEntrenador, 100,);
     localStorage.setItem("entrenador", JSON.stringify(entrenadorUsuario))
     
   }

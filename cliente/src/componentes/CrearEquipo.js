@@ -11,7 +11,10 @@ function CrearEquipo() {
         const response = await obtenerEquipo(localStorage.getItem("nombreUsuario"))
         const miEquipoTmp = await response.json()
         setMiEquipo(miEquipoTmp)
-    }
+        let entrenador = JSON.parse(localStorage.getItem("entrenador"))
+        entrenador.equipo = miEquipoTmp
+        localStorage.setItem("entrenador",JSON.stringify(entrenador))
+        }
     useEffect(() => {
 
         fetch("http://localhost:3000/obtenerPokemones")
@@ -44,10 +47,7 @@ function CrearEquipo() {
             },
             body: JSON.stringify(mensaje)
         })
-            .then(data => data.json())
-            .then(res => {
-                console.log(res.mensaje)
-            })
+
         cargarEquipo()
 
     }

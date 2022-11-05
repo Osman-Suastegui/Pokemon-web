@@ -6,7 +6,6 @@ function Perfil() {
     return (
         <div>
             <h2>Esta es tu perfil y tu nombre es {entrenador.nombre}</h2>
-            <h2>Esta es tu perfil y tu email es {entrenador.correo}</h2>            
             <h2>Esta es tu perfil y tu puntaje es {entrenador.puntuacion}</h2>            
         </div>
     );

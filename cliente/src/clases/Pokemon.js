@@ -14,7 +14,9 @@ class Pokemon{
     show(){
         console.log(`Name: ${this.nombre}, Type: ${this.tipo}, Vida: ${this.vida}, Ataque: ${this.ataque}`);
     }
-
+    getAtaque(){
+        return this.ataque
+    }
     atacar(pokemon){
         pokemon.vida -= this.ataque;
     }

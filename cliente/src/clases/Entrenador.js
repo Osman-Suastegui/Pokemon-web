@@ -1,10 +1,9 @@
 class Entrenador{
 
-    constructor(nombre, equipo,puntuacion,correo){
+    constructor(nombre, equipo,puntuacion){
         this.nombre = nombre;
         this.equipo = equipo;
         this.puntuacion = puntuacion;
-        this.correo = correo;
     } 
 
     setEquipo(equipo){

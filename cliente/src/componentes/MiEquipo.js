@@ -6,9 +6,9 @@ function MiEquipo({equipos}) {
 
 
     return (
-        <div className="Contenedor-Equipo">
+        <div className="Contenedor-Equipo" >
            {equipos.map((poke) => (
-            <img src={poke.img_frente} /> 
+                  <img key={poke.pokemonID} src={poke.img_frente} /> 
            ))}
         </div>
     )

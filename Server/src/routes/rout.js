@@ -48,7 +48,7 @@ router.post("/existeUsuario", async (req, res) => {
         return res.status(200).send(existeUsuario)
 
     } catch (error) {
-        res.status(500).send(error.message)
+        res.send(error.message)
     }
 })
 
@@ -128,8 +128,8 @@ router.post("/obtenerEquipo", async (req, res) => {
         console.log(error.message)
 
     }
-
 })
+
 router.post("/guardarPokemonEquipo", async (req, res) => {
     try {
         const { id, usuario } = req.body
@@ -156,6 +156,7 @@ router.post('/registrarse', async (req, res) => {
             .query("SELECT * FROM usuarios WHERE nomusuario = @nomusuario")
         const existeUsuario = res2.recordset.length != 0
         if (existeUsuario) {
+            throw error
             res.json({ "mensaje": "El usuario ya se encuentra registrado" })
         } else {
             const hashContra = bcrypt.hashSync(contra, saltRounds);
