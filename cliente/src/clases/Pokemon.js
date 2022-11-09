@@ -1,10 +1,11 @@
 class Pokemon{
     
-    constructor(nombre, tipo, vida, ataque, velocidad, defensa,img_frente,img_espaldas){
+    constructor(id,nombre, tipo, vida, fuerza, velocidad, defensa,img_frente,img_espaldas){
+        this.pokemonID = id 
         this.nombre = nombre;
         this.tipo = tipo;
         this.vida = vida;
-        this.ataque = ataque;
+        this.fuerza = fuerza;
         this.velocidad = velocidad;
         this.defensa = defensa;
         this.img_frente = img_frente
@@ -12,17 +13,17 @@ class Pokemon{
     }
 
     show(){
-        console.log(`Name: ${this.nombre}, Type: ${this.tipo}, Vida: ${this.vida}, Ataque: ${this.ataque}`);
+        console.log(`Name: ${this.nombre}, Type: ${this.tipo}, Vida: ${this.vida}, Ataque: ${this.fuerza}`);
     }
     getAtaque(){
-        return this.ataque
+        return this.fuerza
     }
     atacar(pokemon){
-        pokemon.vida -= this.ataque;
+        pokemon.vida -= this.fuerza;
     }
 
     atacarEspecial(pokemon){
-        pokemon.vida -= this.ataque * 2;
+        pokemon.vida -= this.fuerza * 2;
     }
 
     getVida(){

@@ -5,6 +5,7 @@ import Combate from './Combate.js';
 import { useEffect, useState } from 'react'
 import Pokemon from '../clases/Pokemon';
 import Entrenador from '../clases/Entrenador';
+import {useNavigate} from 'react-router-dom'
 function CombatirBot() {
 
   const [entrenador, setEntrenador] = useState(JSON.parse(localStorage.getItem("entrenador")))
@@ -12,12 +13,14 @@ function CombatirBot() {
   const [pokemonEnUsoJugador, setPokemonEnUsoJugador] = useState(entrenador.equipo[0])
   const [pokemonContrincante, setPokemonContrincante] = useState()
   const [habilidadContrincante,setHabilidadContrincante] = useState("atacar")
+  const [indexBot,setIndexBot] = useState(0)
+  const navigate = useNavigate()
 
   const obtenerEquipoBot = async () => {
     await fetch("http://localhost:3000/obtenerPokemones")
       .then(data => data.json())
       .then(pokemones => {
-        generarEquipoBot(pokemones.map(pokemon => new Pokemon(pokemon.nombre, pokemon.tipo, pokemon.vida, pokemon.fuerza, pokemon.velocidad, pokemon.defensa, pokemon.img_frente, null)
+        generarEquipoBot(pokemones.map(pokemon => new Pokemon(pokemon.pokemonID,pokemon.nombre, pokemon.tipo, pokemon.vida, pokemon.fuerza, pokemon.velocidad, pokemon.defensa, pokemon.img_frente, null)
         ))
       })
   }
@@ -47,14 +50,34 @@ function CombatirBot() {
 
   }, [])
 
-  // useEffect(()=>{
-  //   if(habilidadContrincante == null){
-  //     const habilidades = ["atacar","defender","atacarImprobable"]
-  //     const randomHabilidad = Math.floor(Math.random() * habilidades.length)
-  //     const habilidadSeleccionada = habilidades[randomHabilidad]
-  //     setHabilidadContrincante(habilidadSeleccionada)
-  //   }
-  // },[habilidadContrincante])
+  useEffect(()=>{
+    
+      if(pokemonContrincante?.vida <= 0){
+        if(indexBot < 2 ){
+          setIndexBot(indexBot + 1)
+        }
+      }
+ 
+    
+    
+  },[pokemonContrincante?.vida])
+
+  useEffect(()=>{
+    setPokemonContrincante(bot?.equipo[indexBot])
+
+  },[indexBot])
+
+  useEffect(()=>{
+    if(habilidadContrincante == null){
+      // const habilidades = ["atacar","defender","atacarImprobable"]
+      const habilidades = ["atacar","atacar","atacar"]
+      const randomHabilidad = Math.floor(Math.random() * habilidades.length)
+      const habilidadSeleccionada = habilidades[randomHabilidad]
+      console.log("habilidad seleccionada ",habilidadSeleccionada )
+      
+      setHabilidadContrincante(habilidadSeleccionada)
+    }
+  },[habilidadContrincante])
 
 
 
@@ -63,7 +86,7 @@ function CombatirBot() {
   return (
     <div className='Contenedor-Principal'>
       {
-        bot == null ? (<h1>cargando...</h1>) : (<Combate jugador={entrenador} contrincante={bot} pokemonEnUsoJugador={pokemonEnUsoJugador} pokemonContrincante={pokemonContrincante} setPokemonContrincante={setPokemonContrincante} habilidadContrincante={habilidadContrincante} setPokemonEnUsoJugador={setPokemonEnUsoJugador} setHabilidadContrincante={setHabilidadContrincante}/>)
+        bot == null ? (<h1>cargando...</h1>) : (<Combate jugador={entrenador} setJugador={setEntrenador} contrincante={bot} setContrincante={setBot} pokemonEnUsoJugador={pokemonEnUsoJugador} pokemonContrincante={pokemonContrincante} setPokemonContrincante={setPokemonContrincante} habilidadContrincante={habilidadContrincante} setPokemonEnUsoJugador={setPokemonEnUsoJugador} setHabilidadContrincante={setHabilidadContrincante}/>)
 
       }
     </div>

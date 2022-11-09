@@ -8,7 +8,7 @@ function MiEquipo({equipos}) {
     return (
         <div className="Contenedor-Equipo" >
            {equipos.map((poke) => (
-                  <img key={poke.pokemonID} src={poke.img_frente} /> 
+                  <img  key={poke.pokemonID} src={poke.img_frente} /> 
            ))}
         </div>
     )

@@ -1,4 +1,5 @@
 import './App.css';
+import Animaciones from './css/AnimacionesCSS.css';
 import Home from './componentes/Home.js';
 import Login from './componentes/Login';
 import MenuUsuario from './componentes/Menu.js';

@@ -2,37 +2,57 @@
 {
     width: 100%;
     height: 100%;
-    display: flex;
-    flex-direction: column;
     background-image: url(../img/IndexBackground.jfif);
     background-repeat: no-repeat;
     background-size: cover;
+    position: fixed;
+    align-items: center;    
+    font-family: 'Roboto', sans-serif;
+    font-weight: bold;
+    font-size: 23px;
+    text-transform: uppercase;;
 }
 
 .repetir-logo
-{
+{   
     width: 100%;
     height: 100%;
     background-image: url(../img/Logo.png);
     background-repeat: repeat;
-    display: flex;
-    align-items: center;
-    justify-content: center;
+}
+.Titulo-Ranking{
+    color: white; 
+    animation: fuego 2s infinite;
 }
 
-.contenedor-Tabla{
-    width: 50%;
-    height: 80%;
-    display: flex;
-    flex-direction: column;
-    background-color: rgba(0, 0, 0, 0.5);
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
+.styled-table 
+{   
+    background-color: rgba(233, 230, 230, 0.877);
+    border-collapse: collapse; 
+    margin: 25px 0; 
+    font-size: 1em; 
+    font-family: sans-serif;     
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.15);
+    overflow-y: scroll; 
 }
-
-.Tabla-Ranking
-{
-    
-    
+.styled-table thead tr 
+{   
+    background-color: #980081; 
+    color: #ffffff; 
+}
+.styled-table th, .styled-table td 
+{ 
+    padding: 12px 15px; 
+}
+.styled-table tbody tr 
+{ 
+    border-bottom: 1px solid #dddddd; 
+} 
+.styled-table tbody tr:nth-of-type(even) 
+{ 
+    background-color: #f3f3f3; 
+} 
+.styled-table tbody tr:last-of-type 
+{ 
+    border-bottom: 2px solid #009879; 
 }

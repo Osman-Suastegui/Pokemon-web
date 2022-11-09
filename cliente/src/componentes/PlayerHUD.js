@@ -6,14 +6,11 @@ function InfoPoke( {miPoke,danio} ) {
             <div className='InfoJugador'>
                 <h1>{miPoke?.nombre}</h1>
                 <h3>{miPoke?.vida }</h3> 
-                <div className='BarraVida'>
-                    <div className='Vida' style={{width: miPoke?.vida + '%'}}></div>
-                </div>
+                <div className="BarraVida" style={{width: `${miPoke?.vida}%`}}></div>              
             </div>
             <div className='img'>
                 <img src={miPoke?.img_frente} />
             </div>
-
         </div>
     )
 }
