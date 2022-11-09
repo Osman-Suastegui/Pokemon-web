@@ -146,6 +146,7 @@ router.post("/guardarPokemonEquipo", async (req, res) => {
 
 router.post('/registrarse', async (req, res) => {
 
+ 
     try {
         const { nomUsuario, email, contra } = req.body;
 
@@ -156,7 +157,6 @@ router.post('/registrarse', async (req, res) => {
             .query("SELECT * FROM usuarios WHERE nomusuario = @nomusuario")
         const existeUsuario = res2.recordset.length != 0
         if (existeUsuario) {
-            throw error
             res.json({ "mensaje": "El usuario ya se encuentra registrado" })
         } else {
             const hashContra = bcrypt.hashSync(contra, saltRounds);
